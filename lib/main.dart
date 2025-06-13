@@ -10,7 +10,8 @@ void main() async {
 
   await Hive.initFlutter();
   var box = await Hive.openBox(Store.userHiveBox);
-  debugPrint("Box '${box.name}' is open: ${box.isOpen}");
+  debugPrint("'${box.name}' box is open: ${box.isOpen}");
+  debugPrint(Store.getAll().length.toString());
 
   runApp(const ProviderScope(child: MainApp()));
 }

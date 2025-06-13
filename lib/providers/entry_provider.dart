@@ -27,6 +27,6 @@ class CurrentEntry extends _$CurrentEntry {
   void switchEntry(DateTime date) {
     debugPrint("Switching to $date");
     state = Entry(date: date, body: Store.get(daysSinceEpoch(date)));
-    debugPrint("Selected entry:- $state");
+    debugPrint("Selected entry:- $date");
   }
 }

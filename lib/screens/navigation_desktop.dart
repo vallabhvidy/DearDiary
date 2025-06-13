@@ -7,12 +7,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class NavigationDesktop extends ConsumerWidget {
   NavigationDesktop({super.key});
 
-  final List<NavigationRailDestination> destinations = [
+  static final List<NavigationRailDestination> destinations = [
     NavigationRailDestination(icon: Icon(Icons.home), label: Text("Home")),
     NavigationRailDestination(icon: Icon(Icons.search), label: Text("Search")),
   ];
 
-  final List<Widget> screens = [
+  static final List<Widget> screens = [
     HomeScreen(),
     SearchScreen(),
   ];
@@ -20,7 +20,7 @@ class NavigationDesktop extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(selectedIndexProvider);
-    debugPrint("Rebuilding home screen.");
+    debugPrint("current page:- $selectedIndex");
 
     return Row(
       children: [

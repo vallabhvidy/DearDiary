@@ -1,5 +1,3 @@
-import 'package:diary/providers/entry_provider.dart';
-import 'package:diary/screens/home_screen/widgets/date_pill.dart';
 import 'package:diary/utils/date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,12 +5,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class DateSwitcher extends ConsumerWidget {
   const DateSwitcher({
     super.key,
+    required this.date,
+    required this.onSwitch,
   });
+
+  final DateTime date;
+  final void Function(DateTime) onSwitch;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    DateTime date = ref.watch(currentEntryProvider).date;
-
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: 600),
       child: Material(
@@ -22,32 +23,71 @@ class DateSwitcher extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              onPressed: !date
-                      .subtract(const Duration(days: 1))
-                      .isBefore(initDate)
-                  ? () {
-                      ref
-                          .read(currentEntryProvider.notifier)
-                          .switchEntry(date.subtract(const Duration(days: 1)));
-                    }
-                  : null,
+              onPressed:
+                  !date.subtract(const Duration(days: 1)).isBefore(initDate)
+                      ? () {
+                          onSwitch(date.subtract(const Duration(days: 1)));
+                        }
+                      : null,
               icon: Icon(Icons.chevron_left),
             ),
             DatePill(
               date: date,
-              onSelect: ref.read(currentEntryProvider.notifier).switchEntry,
+              onSelect: onSwitch,
             ),
             IconButton(
               onPressed: !date.add(const Duration(days: 1)).isAfter(lastDate)
                   ? () {
-                      ref
-                          .read(currentEntryProvider.notifier)
-                          .switchEntry(date.add(const Duration(days: 1)));
+                      onSwitch(date.add(const Duration(days: 1)));
                     }
                   : null,
               icon: Icon(Icons.chevron_right),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class DatePill extends StatelessWidget {
+  final DateTime date;
+  final void Function(DateTime) onSelect;
+
+  const DatePill({super.key, required this.date, required this.onSelect});
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: 150),
+      child: InkWell(
+        onTap: () async {
+          final newDate = await showDatePicker(
+            context: context,
+            initialDate: date,
+            firstDate: initDate,
+            lastDate: lastDate,
+          );
+          debugPrint("selected:- $newDate");
+          if (newDate != null) onSelect(newDate);
+        },
+        borderRadius: BorderRadius.circular(24.0),
+        hoverColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+        child: Container(
+          height: 40.0,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            "${date.day} - ${date.month} - ${date.year}",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 16.0,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
       ),
     );

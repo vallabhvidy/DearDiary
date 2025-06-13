@@ -26,4 +26,8 @@ class Store {
     );
     return body;
   }
+
+  static Map<dynamic, dynamic> getAll() {
+    return userBox.toMap();
+  }
 }
