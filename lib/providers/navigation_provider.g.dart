@@ -6,7 +6,7 @@ part of 'navigation_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$selectedIndexHash() => r'5eca31c87dcce7421625dd1c5d89d21ae6966592';
+String _$selectedIndexHash() => r'c03d6c5651e802e6c6a38c9630563e8d509f0d59';
 
 /// See also [SelectedIndex].
 @ProviderFor(SelectedIndex)

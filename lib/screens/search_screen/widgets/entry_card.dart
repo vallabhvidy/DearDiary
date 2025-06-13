@@ -20,7 +20,9 @@ class EntryCard extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () => onSelect(date),
       child: Card.outlined(
-        color: Colors.transparent,
+        elevation: 4,
+        color: Theme.of(context).colorScheme.surface,
+        margin: EdgeInsets.all(5.0),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -31,15 +33,17 @@ class EntryCard extends StatelessWidget {
                 DateFormat.yMMMd().format(date),
                 style: TextStyle(
                   fontSize: 15,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
-              Container(height: 10),
+              SizedBox(height: 8.0),
               Text(
                 body.replaceAll(RegExp(r'\s'), ' ').trim(),
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 15,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
             ],

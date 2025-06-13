@@ -1,6 +1,7 @@
 import 'package:diary/utils/date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class DateSwitcher extends ConsumerWidget {
   const DateSwitcher({
@@ -81,7 +82,7 @@ class DatePill extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: Text(
-            "${date.day} - ${date.month} - ${date.year}",
+            DateFormat.yMMMMd().format(date),
             style: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
               fontSize: 16.0,

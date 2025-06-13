@@ -8,8 +8,11 @@ class Store {
   static Box get userBox => Hive.box(userHiveBox);
 
   static Future<void> update(int key, String value) async {
-    if (value == "" || value == defaultBody) {
-      debugPrint("Value is empty skipping update.");
+    if (value.replaceAll(RegExp(r'\s'), ' ').trim() == "" ||
+        value.replaceAll(RegExp(r'\s'), ' ').trim().trim() ==
+            defaultBody.replaceAll(RegExp(r'\s'), ' ').trim().trim()) {
+      debugPrint("Value is empty skipping update (and deleting entry).");
+      await userBox.delete(key);
       return;
     }
     debugPrint("Trying to update with key: $key");

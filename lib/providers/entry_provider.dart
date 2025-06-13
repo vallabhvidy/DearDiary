@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'entry_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CurrentEntry extends _$CurrentEntry {
   @override
   Entry build() {
