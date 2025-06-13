@@ -31,10 +31,7 @@ class NavigationDesktop extends ConsumerWidget {
         ),
         const VerticalDivider(thickness: 1, width: 1),
         Expanded(
-          child: IndexedStack(
-            index: selectedIndex,
-            children: screens,
-          ),
+          child: screens[selectedIndex],
         ),
       ],
     );

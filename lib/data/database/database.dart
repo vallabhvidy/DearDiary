@@ -12,7 +12,7 @@ class Store {
       debugPrint("Value is empty skipping update.");
       return;
     }
-    debugPrint("Trying to update with {key: $key, value: $value}");
+    debugPrint("Trying to update with key: $key");
     await userBox.put(key, value);
     debugPrint((userBox.get(key) == value
         ? "Update successfull in database!"

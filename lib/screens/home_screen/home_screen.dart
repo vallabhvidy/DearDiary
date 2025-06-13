@@ -9,7 +9,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final date = ref.watch(currentEntryProvider).date;
+    final date = ref.watch(currentEntryProvider.select((entry) => entry.date));
 
     debugPrint("Rebuilding home screen");
     debugPrint("Current entry date: $date");

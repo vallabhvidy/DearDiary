@@ -9,11 +9,10 @@ part 'search_provider.g.dart';
 @riverpod
 class Search extends _$Search {
   @override
-  List<Entry> build() {
-    return _allEntries();
-  }
+  List<Entry> build() => _allEntries();
 
   List<Entry> _allEntries() {
+    debugPrint("fetching all entries...");
     final entriesMap = Store.getAll();
     List<Entry> allEntries = [];
     entriesMap.forEach(
@@ -39,6 +38,7 @@ class Search extends _$Search {
   }
 
   void textSearch(String query) {
+    debugPrint("filtering with query: $query");
     final allEntries = _allEntries();
     final filteredEntries = allEntries
         .where((entry) => entry.body.toLowerCase().contains(query))

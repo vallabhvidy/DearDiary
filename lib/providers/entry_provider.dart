@@ -10,13 +10,15 @@ part 'entry_provider.g.dart';
 class CurrentEntry extends _$CurrentEntry {
   @override
   Entry build() {
-    DateTime today = DateTime.now();
+    debugPrint("currentEntryProvider rebuilding...");
+    DateTime today = daysSinceEpochtoDateTime(daysSinceEpoch(DateTime.now()));
     String body = Store.get(daysSinceEpoch(today));
 
     return Entry(date: today, body: body);
   }
 
   Future<void> updateEntry(String body) async {
+    debugPrint("updateEntry called for ${state.date}");
     state = Entry(
       date: state.date,
       body: body,
