@@ -40,8 +40,9 @@ class Search extends _$Search {
 
   void textSearch(String query) {
     final allEntries = _allEntries();
-    final filteredEntries =
-        allEntries.where((entry) => entry.body.contains(query)).toList();
+    final filteredEntries = allEntries
+        .where((entry) => entry.body.toLowerCase().contains(query))
+        .toList();
 
     state = filteredEntries;
   }

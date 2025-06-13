@@ -29,8 +29,11 @@ class SearchScreen extends ConsumerWidget {
           SliverAppBar(
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(56.0),
-              child: FindBar(
-                onChanged: ref.read(searchProvider.notifier).textSearch,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: FindBar(
+                  onChanged: ref.read(searchProvider.notifier).textSearch,
+                ),
               ),
             ),
           ),
