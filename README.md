@@ -1,3 +1,3 @@
-# diary
+# DearDiary
 
-A new Flutter project.
+A diary app
