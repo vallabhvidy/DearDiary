@@ -27,15 +27,18 @@ class SearchScreen extends ConsumerWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(56.0),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: FindBar(
-                  onChanged: ref.read(searchProvider.notifier).textSearch,
-                ),
-              ),
+            floating: true,
+            title: FindBar(
+              onChanged: ref.read(searchProvider.notifier).textSearch,
             ),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                icon: Icon(Icons.filter_alt),
+                onPressed: () {},
+              ),
+              SizedBox(width: 12.0),
+            ],
           ),
           SliverMasonryGrid.count(
             crossAxisCount: 4,
