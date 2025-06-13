@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NavigationDesktop extends ConsumerWidget {
-  NavigationDesktop({super.key});
+  const NavigationDesktop({super.key});
 
   static final List<NavigationRailDestination> destinations = [
     NavigationRailDestination(icon: Icon(Icons.home), label: Text("Home")),
@@ -31,7 +31,10 @@ class NavigationDesktop extends ConsumerWidget {
         ),
         const VerticalDivider(thickness: 1, width: 1),
         Expanded(
-          child: screens[selectedIndex],
+          child: IndexedStack(
+            index: selectedIndex,
+            children: screens,
+          ),
         ),
       ],
     );
