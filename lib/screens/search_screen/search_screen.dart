@@ -34,27 +34,25 @@ class SearchScreen extends ConsumerWidget {
 
     debugPrint("$screenHeight : $screenWidth");
 
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            title: FindBar(
-              onChanged: ref.read(searchProvider.notifier).textSearch,
-            ),
-            centerTitle: true,
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          floating: true,
+          title: FindBar(
+            onChanged: ref.read(searchProvider.notifier).textSearch,
           ),
-          SliverMasonryGrid.count(
-            crossAxisCount: crossAxisCount,
-            childCount: searchList.length,
-            itemBuilder: (context, index) => EntryCard(
-              date: searchList[index].date,
-              body: searchList[index].body,
-              onSelect: onSelect,
-            ),
+          centerTitle: true,
+        ),
+        SliverMasonryGrid.count(
+          crossAxisCount: crossAxisCount,
+          childCount: searchList.length,
+          itemBuilder: (context, index) => EntryCard(
+            date: searchList[index].date,
+            body: searchList[index].body,
+            onSelect: onSelect,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

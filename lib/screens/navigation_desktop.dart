@@ -7,11 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class NavigationDesktop extends ConsumerWidget {
   const NavigationDesktop({super.key});
 
-  static final List<NavigationRailDestination> destinations = [
-    NavigationRailDestination(icon: Icon(Icons.home), label: Text("Home")),
-    NavigationRailDestination(icon: Icon(Icons.search), label: Text("Search")),
-  ];
-
   static final List<Widget> screens = [
     HomeScreen(),
     SearchScreen(),
@@ -22,18 +17,53 @@ class NavigationDesktop extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
     debugPrint("current page:- $selectedIndex");
 
-    return Row(
-      children: [
-        NavigationRail(
+    var screenWidth = MediaQuery.sizeOf(context).width;
+
+    if (screenWidth > 600) {
+      final List<NavigationRailDestination> destinations = [
+        NavigationRailDestination(
+          icon: Icon(Icons.home),
+          label: Text("Home"),
+          padding: EdgeInsets.all(8.0),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.search),
+          label: Text("Search"),
+          padding: EdgeInsets.all(8.0),
+        ),
+      ];
+
+      return Scaffold(
+        body: Row(
+          children: [
+            NavigationRail(
+              destinations: destinations,
+              selectedIndex: selectedIndex,
+              labelType: NavigationRailLabelType.all,
+              onDestinationSelected:
+                  ref.read(selectedIndexProvider.notifier).set,
+            ),
+            const VerticalDivider(thickness: 1, width: 1),
+            Expanded(
+              child: screens[selectedIndex],
+            ),
+          ],
+        ),
+      );
+    } else {
+      final List<Widget> destinations = [
+        NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+        NavigationDestination(icon: Icon(Icons.search), label: "Search"),
+      ];
+
+      return Scaffold(
+        bottomNavigationBar: NavigationBar(
           destinations: destinations,
           selectedIndex: selectedIndex,
           onDestinationSelected: ref.read(selectedIndexProvider.notifier).set,
         ),
-        const VerticalDivider(thickness: 1, width: 1),
-        Expanded(
-          child: screens[selectedIndex],
-        ),
-      ],
-    );
+        body: screens[selectedIndex],
+      );
+    }
   }
 }

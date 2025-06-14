@@ -8,7 +8,6 @@ class HomeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(36.0),
-      height: double.infinity,
       child: TextArea(),
     );
   }
