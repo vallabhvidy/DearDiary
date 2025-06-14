@@ -23,6 +23,17 @@ class SearchScreen extends ConsumerWidget {
       dateSwitch(date);
     }
 
+    var screenWidth = MediaQuery.sizeOf(context).width;
+    var screenHeight = MediaQuery.sizeOf(context).height;
+
+    var crossAxisCount = screenWidth < 600
+        ? 2
+        : screenWidth < 1200
+            ? 3
+            : 4;
+
+    debugPrint("$screenHeight : $screenWidth");
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -34,7 +45,7 @@ class SearchScreen extends ConsumerWidget {
             centerTitle: true,
           ),
           SliverMasonryGrid.count(
-            crossAxisCount: 4,
+            crossAxisCount: crossAxisCount,
             childCount: searchList.length,
             itemBuilder: (context, index) => EntryCard(
               date: searchList[index].date,
