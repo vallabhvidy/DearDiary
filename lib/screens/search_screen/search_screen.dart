@@ -32,13 +32,6 @@ class SearchScreen extends ConsumerWidget {
               onChanged: ref.read(searchProvider.notifier).textSearch,
             ),
             centerTitle: true,
-            actions: [
-              IconButton(
-                icon: Icon(Icons.filter_alt),
-                onPressed: () {},
-              ),
-              SizedBox(width: 12.0),
-            ],
           ),
           SliverMasonryGrid.count(
             crossAxisCount: 4,

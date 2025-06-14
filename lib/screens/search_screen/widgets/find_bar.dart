@@ -22,6 +22,17 @@ class FindBar extends StatelessWidget {
           prefixIcon: Icon(Icons.search),
           border: InputBorder.none,
           contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+          suffixIcon: IconButton(
+            onPressed: () {},
+            style: ButtonStyle(
+              shape: WidgetStatePropertyAll(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            ),
+            icon: Icon(Icons.filter_alt),
+          ),
         ),
       ),
     );
