@@ -7,7 +7,7 @@ class HomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(36.0),
+      padding: EdgeInsets.all(24.0),
       child: TextArea(),
     );
   }

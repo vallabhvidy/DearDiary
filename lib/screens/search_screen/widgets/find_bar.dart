@@ -15,7 +15,6 @@ class FindBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: TextField(
-        autofocus: true,
         onChanged: onChanged,
         decoration: InputDecoration(
           hintText: "Find your memories...",

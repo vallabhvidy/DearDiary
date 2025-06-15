@@ -45,7 +45,10 @@ class Navigation extends ConsumerWidget {
             ),
             const VerticalDivider(thickness: 1, width: 1),
             Expanded(
-              child: screens[selectedIndex],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: screens[selectedIndex],
+              ),
             ),
           ],
         ),
@@ -62,7 +65,10 @@ class Navigation extends ConsumerWidget {
           selectedIndex: selectedIndex,
           onDestinationSelected: ref.read(selectedIndexProvider.notifier).set,
         ),
-        body: screens[selectedIndex],
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: screens[selectedIndex],
+        ),
       );
     }
   }
