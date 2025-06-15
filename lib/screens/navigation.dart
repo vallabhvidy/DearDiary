@@ -4,8 +4,8 @@ import 'package:diary/screens/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NavigationDesktop extends ConsumerWidget {
-  const NavigationDesktop({super.key});
+class Navigation extends ConsumerWidget {
+  const Navigation({super.key});
 
   static final List<Widget> screens = [
     HomeScreen(),

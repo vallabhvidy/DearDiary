@@ -1,5 +1,5 @@
 import 'package:diary/data/database/database.dart';
-import 'package:diary/screens/navigation_desktop.dart';
+import 'package:diary/screens/navigation.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
           useMaterial3: true,
         ),
         themeMode: ThemeMode.system,
-        home: NavigationDesktop(),
+        home: Navigation(),
       ),
     );
   }
