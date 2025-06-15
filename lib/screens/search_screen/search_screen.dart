@@ -43,15 +43,53 @@ class SearchScreen extends ConsumerWidget {
           ),
           centerTitle: true,
         ),
-        SliverMasonryGrid.count(
-          crossAxisCount: crossAxisCount,
-          childCount: searchList.length,
-          itemBuilder: (context, index) => EntryCard(
-            date: searchList[index].date,
-            body: searchList[index].body,
-            onSelect: onSelect,
-          ),
-        ),
+        searchList.isNotEmpty
+            ? SliverMasonryGrid.count(
+                crossAxisCount: crossAxisCount,
+                childCount: searchList.length,
+                itemBuilder: (context, index) => EntryCard(
+                  date: searchList[index].date,
+                  body: searchList[index].body,
+                  onSelect: onSelect,
+                ),
+              )
+            : SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.book_outlined,
+                        size: 100.0,
+                        color: Theme.of(context).colorScheme.secondaryContainer,
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        "No entries yet",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onBackground,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                        child: Text(
+                          "Start writing your diary to see your entries here.",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
       ],
     );
   }

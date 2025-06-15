@@ -23,7 +23,10 @@ class HomeScreen extends ConsumerWidget {
             onSwitch: ref.read(currentEntryProvider.notifier).switchEntry,
           ),
         ),
-        SliverFillRemaining(child: HomeContainer()),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: HomeContainer(),
+        ),
       ],
     );
   }
