@@ -18,7 +18,7 @@ class DateSwitcher extends ConsumerWidget {
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: 600),
       child: Material(
-        color: Theme.of(context).colorScheme.surfaceContainer,
+        color: Theme.of(context).colorScheme.onInverseSurface,
         borderRadius: BorderRadius.circular(24.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

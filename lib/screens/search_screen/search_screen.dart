@@ -70,7 +70,7 @@ class SearchScreen extends ConsumerWidget {
                         style: TextStyle(
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onBackground,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                       const SizedBox(height: 10),

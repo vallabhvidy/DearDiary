@@ -11,7 +11,7 @@ class FindBar extends StatelessWidget {
       height: 40.0,
       constraints: BoxConstraints(maxWidth: 600),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainer,
+        color: Theme.of(context).colorScheme.onInverseSurface,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: TextField(
