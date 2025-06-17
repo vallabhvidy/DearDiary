@@ -19,13 +19,25 @@ void main() async {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+  static final _defaultLight = ColorScheme.fromSeed(
+    seedColor: Colors.purple,
+    brightness: Brightness.light,
+  );
+  static final _defaultDark = ColorScheme.fromSeed(
+    seedColor: Colors.purple,
+    brightness: Brightness.dark,
+  );
+
   @override
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
       builder: (lightDynamic, darkDynamic) => MaterialApp(
-        theme: ThemeData(colorScheme: lightDynamic, useMaterial3: true),
+        theme: ThemeData(
+          colorScheme: lightDynamic ?? _defaultLight,
+          useMaterial3: true,
+        ),
         darkTheme: ThemeData(
-          colorScheme: darkDynamic,
+          colorScheme: darkDynamic ?? _defaultDark,
           useMaterial3: true,
         ),
         themeMode: ThemeMode.system,
