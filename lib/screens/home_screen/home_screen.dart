@@ -14,15 +14,20 @@ class HomeScreen extends ConsumerWidget {
     debugPrint("Rebuilding home screen");
     debugPrint("Current entry date: $date");
 
-    return Scaffold(
-      appBar: AppBar(
-        title: DateSwitcher(
-          date: date,
-          onSwitch: ref.read(currentEntryProvider.notifier).switchEntry,
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          centerTitle: true,
+          title: DateSwitcher(
+            date: date,
+            onSwitch: ref.read(currentEntryProvider.notifier).switchEntry,
+          ),
         ),
-        centerTitle: true,
-      ),
-      body: HomeContainer(),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: HomeContainer(),
+        ),
+      ],
     );
   }
 }

@@ -23,27 +23,74 @@ class SearchScreen extends ConsumerWidget {
       dateSwitch(date);
     }
 
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            title: FindBar(
-              onChanged: ref.read(searchProvider.notifier).textSearch,
-            ),
-            centerTitle: true,
+    var screenWidth = MediaQuery.sizeOf(context).width;
+    var screenHeight = MediaQuery.sizeOf(context).height;
+
+    var crossAxisCount = screenWidth < 600
+        ? 2
+        : screenWidth < 1200
+            ? 3
+            : 4;
+
+    debugPrint("$screenHeight : $screenWidth");
+
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          floating: true,
+          title: FindBar(
+            onChanged: ref.read(searchProvider.notifier).textSearch,
           ),
-          SliverMasonryGrid.count(
-            crossAxisCount: 4,
-            childCount: searchList.length,
-            itemBuilder: (context, index) => EntryCard(
-              date: searchList[index].date,
-              body: searchList[index].body,
-              onSelect: onSelect,
-            ),
-          ),
-        ],
-      ),
+          centerTitle: true,
+        ),
+        searchList.isNotEmpty
+            ? SliverMasonryGrid.count(
+                crossAxisCount: crossAxisCount,
+                childCount: searchList.length,
+                itemBuilder: (context, index) => EntryCard(
+                  date: searchList[index].date,
+                  body: searchList[index].body,
+                  onSelect: onSelect,
+                ),
+              )
+            : SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.book_outlined,
+                        size: 100.0,
+                        color: Theme.of(context).colorScheme.secondaryContainer,
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        "No entries yet",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                        child: Text(
+                          "Start writing your diary to see your entries here.",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+      ],
     );
   }
 }

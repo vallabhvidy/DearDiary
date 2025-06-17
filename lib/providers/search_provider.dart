@@ -14,6 +14,7 @@ class Search extends _$Search {
   List<Entry> _allEntries() {
     debugPrint("fetching all entries...");
     final entriesMap = Store.getAll();
+    debugPrint("converting entries map to list...");
     List<Entry> allEntries = [];
     entriesMap.forEach(
       (key, value) => allEntries.add(
@@ -24,6 +25,16 @@ class Search extends _$Search {
       ),
     );
 
+    debugPrint("conversion successfull!");
+    debugPrint("Total number of entries:- ${allEntries.length}");
+
+    if (allEntries.isEmpty) {
+      debugPrint("skipping sort as list empty...");
+      return [];
+    }
+
+    debugPrint("Sorting...");
+
     allEntries.sort((a, b) {
       int today = daysSinceEpoch(DateTime.now());
       int aToday = (daysSinceEpoch(a.date) - today).abs();
@@ -32,7 +43,8 @@ class Search extends _$Search {
       return aToday.compareTo(bToday);
     });
 
-    debugPrint(allEntries[0].date.toString());
+    debugPrint("Sorting successfull!");
+    debugPrint("initial entry:- ${allEntries[0].date}");
 
     return allEntries;
   }

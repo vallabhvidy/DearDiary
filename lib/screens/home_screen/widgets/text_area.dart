@@ -34,7 +34,6 @@ class _TextAreaState extends ConsumerState<TextArea> {
     _controller.text = ref.read(currentEntryProvider).body;
 
     return TextField(
-      autofocus: true,
       controller: _controller,
       keyboardType: TextInputType.multiline,
       decoration: InputDecoration(

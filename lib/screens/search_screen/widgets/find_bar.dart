@@ -8,20 +8,25 @@ class FindBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.0,
+      // height: 40.0,
       constraints: BoxConstraints(maxWidth: 600),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainer,
+        color: Theme.of(context).colorScheme.onInverseSurface,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: TextField(
-        autofocus: true,
         onChanged: onChanged,
         decoration: InputDecoration(
           hintText: "Find your memories...",
-          prefixIcon: Icon(Icons.search),
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+          prefixIcon: Icon(
+            Icons.search,
+            size: 20.0,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide.none,
+          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 12.0),
           suffixIcon: IconButton(
             onPressed: () {},
             style: ButtonStyle(
