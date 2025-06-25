@@ -6,6 +6,17 @@ class HomeFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpandableFab(children: []);
+    return ExpandableFab(
+      type: ExpandableFabType.up,
+      distance: 70,
+      children: [
+        FloatingActionButton.extended(
+          heroTag: null,
+          label: Text("Image"),
+          icon: Icon(Icons.image),
+          onPressed: () {},
+        ),
+      ],
+    );
   }
 }
