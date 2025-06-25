@@ -2,6 +2,7 @@ import 'package:diary/data/database/database.dart';
 import 'package:diary/data/models/entry.dart';
 import 'package:diary/utils/date.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'entry_provider.g.dart';
@@ -30,5 +31,15 @@ class CurrentEntry extends _$CurrentEntry {
     debugPrint("Switching to $date");
     state = Entry(date: date, body: Store.get(daysSinceEpoch(date)));
     debugPrint("Selected entry:- $date");
+  }
+
+  void addImage() async {
+    debugPrint("adding image to your entry...");
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      debugPrint("Image selected:- ${image.name}");
+    } else {
+      debugPrint("No image selected");
+    }
   }
 }
