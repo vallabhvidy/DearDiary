@@ -1,4 +1,4 @@
-import 'package:diary/data/database/database.dart';
+import 'package:diary/data/database/entry_db.dart';
 import 'package:diary/data/models/entry.dart';
 import 'package:diary/utils/date.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +13,9 @@ class CurrentEntry extends _$CurrentEntry {
   Entry build() {
     debugPrint("currentEntryProvider rebuilding...");
     DateTime today = daysSinceEpochtoDateTime(daysSinceEpoch(DateTime.now()));
-    String body = Store.get(daysSinceEpoch(today));
+    Entry entry = EntryStore.get(daysSinceEpoch(today));
 
-    return Entry(date: today, body: body);
+    return entry;
   }
 
   Future<void> updateEntry(String body) async {
@@ -24,12 +24,12 @@ class CurrentEntry extends _$CurrentEntry {
       date: state.date,
       body: body,
     );
-    Store.update(daysSinceEpoch(state.date), body);
+    EntryStore.update(daysSinceEpoch(state.date), state);
   }
 
   void switchEntry(DateTime date) {
     debugPrint("Switching to $date");
-    state = Entry(date: date, body: Store.get(daysSinceEpoch(date)));
+    state = EntryStore.get(daysSinceEpoch(date));
     debugPrint("Selected entry:- $date");
   }
 

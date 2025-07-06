@@ -1,17 +1,28 @@
-import 'package:diary/data/database/database.dart';
+import 'dart:io';
+
+import 'package:diary/data/database/entry_db.dart';
+import 'package:diary/data/database/migrations.dart';
+import 'package:diary/data/database/settings_db.dart';
+import 'package:diary/hive/hive_registrar.g.dart';
 import 'package:diary/screens/navigation.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Hive.initFlutter();
-  var box = await Hive.openBox(Store.userHiveBox);
-  debugPrint("'${box.name}' box is open: ${box.isOpen}");
-  debugPrint(Store.getAll().length.toString());
+  Hive
+    ..init(Directory.current.path)
+    ..registerAdapters();
+  var entryBox = await Hive.openBox(EntryStore.userHiveBox);
+  var settingsBox = await Hive.openBox(SettingsStore.settingsHiveBox);
+  await migrate(entryBox, settingsBox);
+
+  debugPrint("'${entryBox.name}' box is open: ${entryBox.isOpen}");
+  debugPrint(EntryStore.getAll().length.toString());
+  debugPrint("'${settingsBox.name}' box is open: ${settingsBox.isOpen}");
 
   runApp(const ProviderScope(child: MainApp()));
 }

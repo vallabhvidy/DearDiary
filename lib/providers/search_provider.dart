@@ -1,4 +1,4 @@
-import 'package:diary/data/database/database.dart';
+import 'package:diary/data/database/entry_db.dart';
 import 'package:diary/data/models/entry.dart';
 import 'package:diary/utils/date.dart';
 import 'package:flutter/rendering.dart';
@@ -13,16 +13,11 @@ class Search extends _$Search {
 
   List<Entry> _allEntries() {
     debugPrint("fetching all entries...");
-    final entriesMap = Store.getAll();
+    final entriesMap = EntryStore.getAll();
     debugPrint("converting entries map to list...");
     List<Entry> allEntries = [];
     entriesMap.forEach(
-      (key, value) => allEntries.add(
-        Entry(
-          date: daysSinceEpochtoDateTime(key),
-          body: value,
-        ),
-      ),
+      (key, value) => allEntries.add(value),
     );
 
     debugPrint("conversion successfull!");

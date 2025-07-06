@@ -1,22 +1,14 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 
-part 'entry.g.dart';
-
-@HiveType(typeId: 0)
-class Entry {
-  @HiveField(0)
+class Entry extends HiveObject {
   DateTime date;
-
-  @HiveField(1)
   String body;
-
-  @HiveField(2)
-  String img;
+  String? imgPath;
 
   Entry({
     required this.date,
     required this.body,
-    this.img = "",
+    this.imgPath = "",
   });
 
   @override
