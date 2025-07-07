@@ -23,6 +23,7 @@ class CurrentEntry extends _$CurrentEntry {
     state = Entry(
       date: state.date,
       body: body,
+      imgPath: state.imgPath,
     );
     EntryStore.update(daysSinceEpoch(state.date), state);
   }
@@ -38,6 +39,11 @@ class CurrentEntry extends _$CurrentEntry {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image != null) {
       debugPrint("Image selected:- ${image.name}");
+      state = Entry(
+        date: state.date,
+        body: state.body,
+        imgPath: image.path,
+      );
     } else {
       debugPrint("No image selected");
     }

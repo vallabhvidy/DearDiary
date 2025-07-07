@@ -50,6 +50,7 @@ class SearchScreen extends ConsumerWidget {
                 itemBuilder: (context, index) => EntryCard(
                   date: searchList[index].date,
                   body: searchList[index].body,
+                  imgPath: searchList[index].imgPath,
                   onSelect: onSelect,
                 ),
               )
