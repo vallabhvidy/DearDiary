@@ -1,6 +1,5 @@
 import 'package:diary/providers/navigation_provider.dart';
 import 'package:diary/screens/home_screen/home_screen.dart';
-import 'package:diary/screens/home_screen/widgets/home_fab.dart';
 import 'package:diary/screens/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,11 +10,6 @@ class Navigation extends ConsumerWidget {
   static final List<Widget> screens = [
     HomeScreen(),
     SearchScreen(),
-  ];
-
-  static final List<Widget> fabs = [
-    HomeFAB(),
-    FloatingActionButton(onPressed: () {}),
   ];
 
   @override
@@ -43,7 +37,6 @@ class Navigation extends ConsumerWidget {
         body: Row(
           children: [
             NavigationRail(
-              leading: fabs[selectedIndex],
               destinations: destinations,
               selectedIndex: selectedIndex,
               labelType: NavigationRailLabelType.all,
@@ -76,7 +69,6 @@ class Navigation extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: screens[selectedIndex],
         ),
-        floatingActionButton: fabs[selectedIndex],
       );
     }
   }
