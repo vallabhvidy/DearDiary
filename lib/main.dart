@@ -2,6 +2,7 @@ import 'package:diary/data/database/database.dart';
 import 'package:diary/screens/navigation.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -32,6 +33,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
       builder: (lightDynamic, darkDynamic) => MaterialApp(
+        localizationsDelegates: const [FlutterQuillLocalizations.delegate],
         theme: ThemeData(
           colorScheme: lightDynamic ?? _defaultLight,
           useMaterial3: true,
