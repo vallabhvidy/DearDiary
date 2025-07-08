@@ -1,5 +1,6 @@
 import 'package:diary/providers/navigation_provider.dart';
 import 'package:diary/screens/home_screen/home_screen.dart';
+import 'package:diary/screens/home_screen/widgets/home_fab.dart';
 import 'package:diary/screens/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
