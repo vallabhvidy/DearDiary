@@ -2,6 +2,7 @@ import 'package:diary/providers/navigation_provider.dart';
 import 'package:diary/screens/home_screen/home_screen.dart';
 import 'package:diary/screens/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Navigation extends ConsumerWidget {
@@ -10,6 +11,11 @@ class Navigation extends ConsumerWidget {
   static final List<Widget> screens = [
     HomeScreen(),
     SearchScreen(),
+  ];
+
+  static final List<Widget> fabs = [
+    HomeFAB(),
+    ExpandableFab(children: []),
   ];
 
   @override
@@ -52,6 +58,8 @@ class Navigation extends ConsumerWidget {
             ),
           ],
         ),
+        floatingActionButtonLocation: ExpandableFab.location,
+        floatingActionButton: fabs[selectedIndex],
       );
     } else {
       final List<Widget> destinations = [
@@ -69,6 +77,8 @@ class Navigation extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: screens[selectedIndex],
         ),
+        floatingActionButtonLocation: ExpandableFab.location,
+        floatingActionButton: fabs[selectedIndex],
       );
     }
   }
