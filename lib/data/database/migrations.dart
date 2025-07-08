@@ -1,7 +1,6 @@
 import 'package:diary/data/models/entry.dart';
 import 'package:diary/data/models/settings.dart';
 import 'package:diary/utils/date.dart';
-import 'package:flutter/material.dart';
 import 'package:hive_ce/hive.dart';
 
 Future<void> migrate(Box entryBox, Box settingsBox) async {
@@ -24,9 +23,6 @@ Future<void> migrate(Box entryBox, Box settingsBox) async {
   if (version < 3) {
     for (final key in entryBox.keys) {
       final val = entryBox.get(key);
-      // if (val.imgPaths is List) {
-      //   val.imgPaths = List<String>.from(val.imgPaths ?? []);
-      // }
 
       if (val.imgPaths.isEmpty && val.imgPath != '') {
         val.imgPaths = List<String>.from([val.imgPath]);
