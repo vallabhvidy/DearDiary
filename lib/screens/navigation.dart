@@ -9,15 +9,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class Navigation extends ConsumerWidget {
   const Navigation({super.key});
 
-  static final List<Widget> screens = [
-    HomeScreen(),
-    SearchScreen(),
-  ];
+  List<Widget> get screens => [
+        HomeScreen(),
+        SearchScreen(),
+      ];
 
-  static final List<Widget> fabs = [
-    HomeFAB(),
-    ExpandableFab(children: []),
-  ];
+  List<Widget> get fabs => [
+        HomeFAB(),
+        SizedBox.shrink(),
+      ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
