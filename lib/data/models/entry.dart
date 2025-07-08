@@ -4,11 +4,13 @@ class Entry extends HiveObject {
   DateTime date;
   String body;
   String? imgPath;
+  List<String>? imgPaths;
 
   Entry({
     required this.date,
     required this.body,
-    this.imgPath = "",
+    this.imgPath = '',
+    this.imgPaths = const [],
   });
 
   @override

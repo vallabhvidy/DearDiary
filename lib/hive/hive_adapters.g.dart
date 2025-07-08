@@ -19,20 +19,24 @@ class EntryAdapter extends TypeAdapter<Entry> {
     return Entry(
       date: fields[0] as DateTime,
       body: fields[1] as String,
-      imgPath: fields[2] == null ? "" : fields[2] as String?,
+      imgPath: fields[2] == null ? '' : fields[2] as String?,
+      imgPaths:
+          fields[3] == null ? const [] : (fields[3] as List?)?.cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Entry obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.date)
       ..writeByte(1)
       ..write(obj.body)
       ..writeByte(2)
-      ..write(obj.imgPath);
+      ..write(obj.imgPath)
+      ..writeByte(3)
+      ..write(obj.imgPaths);
   }
 
   @override

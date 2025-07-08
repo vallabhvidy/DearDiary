@@ -13,7 +13,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final date = ref.watch(currentEntryProvider.select((entry) => entry.date));
     final image =
-        ref.watch(currentEntryProvider.select((entry) => entry.imgPath));
+        ref.watch(currentEntryProvider.select((entry) => entry.imgPaths));
 
     debugPrint("Rebuilding home screen");
     debugPrint("Current entry date: $date");
@@ -28,8 +28,8 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: image != null && image.isNotEmpty
-              ? Image.file(File(image))
+          child: image!.isNotEmpty
+              ? Image.file(File(image[0]))
               : const SizedBox.shrink(),
         ),
         SliverFillRemaining(

@@ -32,7 +32,6 @@ class EntryStore {
       defaultValue: Entry(
         date: daysSinceEpochtoDateTime(key),
         body: defaultBody,
-        imgPath: '',
       ),
     );
 
