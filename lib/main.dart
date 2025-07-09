@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:diary/data/database/entry_db.dart';
 import 'package:diary/data/database/migrations.dart';
 import 'package:diary/data/database/settings_db.dart';
@@ -10,12 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  final path = await getApplicationDocumentsDirectory();
   Hive
-    ..init(Directory.current.path)
+    ..init(path.path)
     ..registerAdapters();
   var entryBox = await Hive.openBox(EntryStore.userHiveBox);
   var settingsBox = await Hive.openBox(SettingsStore.settingsHiveBox);

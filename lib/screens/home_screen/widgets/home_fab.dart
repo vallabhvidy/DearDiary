@@ -10,6 +10,11 @@ class HomeFAB extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ExpandableFab(
       type: ExpandableFabType.up,
+      openButtonBuilder: DefaultFloatingActionButtonBuilder(
+        child: const Icon(Icons.add),
+        fabSize: ExpandableFabSize.regular,
+        shape: const CircleBorder(),
+      ),
       distance: 70,
       children: [
         FloatingActionButton.extended(

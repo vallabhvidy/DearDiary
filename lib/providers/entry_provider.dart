@@ -42,8 +42,9 @@ class CurrentEntry extends _$CurrentEntry {
       state = Entry(
         date: state.date,
         body: state.body,
-        imgPaths: state.imgPaths! + ([image.path]),
+        imgPaths: [image.path],
       );
+      EntryStore.update(daysSinceEpoch(state.date), state);
     } else {
       debugPrint("No image selected");
     }

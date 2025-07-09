@@ -29,7 +29,10 @@ class HomeScreen extends ConsumerWidget {
         ),
         SliverToBoxAdapter(
           child: image!.isNotEmpty
-              ? Image.file(File(image[0]))
+              ? Image.file(
+                  File(image[0]),
+                  height: 200,
+                )
               : const SizedBox.shrink(),
         ),
         SliverFillRemaining(
