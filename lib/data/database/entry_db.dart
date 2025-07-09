@@ -21,6 +21,8 @@ class EntryStore {
     }
     debugPrint("Trying to update with key: $key");
     await userBox.put(key, entry);
+    debugPrint("Saving entry with key $key and date ${entry.date}");
+    debugPrint("All keys: ${userBox.keys}");
     debugPrint((userBox.get(key) == entry
         ? "Update successfull in database!"
         : "Update failed"));
