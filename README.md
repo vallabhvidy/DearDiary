@@ -1,6 +1,6 @@
 # DearDiary
 
-A simple, elegant, and offline-friendly diary/journaling app built with Flutter — designed to help you jot down thoughts, memories, or notes for each day.
+An offline-first, adaptive diary/daily journaling app built using flutter.
 
 ![](https://img.shields.io/badge/status-WIP-yellow)
 
