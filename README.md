@@ -21,13 +21,13 @@ This project is still being actively developed. Some things are incomplete.
 
 ### Desktop
 
-| ![Main View](screenshots/desktop/ss1.png) |
+| ![Entry](screenshots/desktop/ss1.png) |
 |------------------------------------------|
 | Entry View                                |
 
-| ![Edit Entry](screenshots/desktop/ss2.png) | ![Responsive Layout](screenshots/desktop/ss3.png) |
-|-------------------------------------------|---------------------------------------------------|
-| Entry Editing                              | Responsive Layout                                 |
+| ![Calender Picker](screenshots/desktop/ss2.png) | ![Calender Picker](screenshots/desktop/ss3.png) |
+|--------------------------------------------|---------------------------------------------------|
+| All Entries                                | Calender Picker                                   |
 
 
 ## Features
