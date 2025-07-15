@@ -29,7 +29,7 @@ class Navigation extends ConsumerWidget {
     if (screenWidth > 600) {
       final List<NavigationRailDestination> destinations = [
         NavigationRailDestination(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.menu_book),
           label: Text("Home"),
           padding: EdgeInsets.all(8.0),
         ),
@@ -64,7 +64,7 @@ class Navigation extends ConsumerWidget {
       );
     } else {
       final List<Widget> destinations = [
-        NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+        NavigationDestination(icon: Icon(Icons.menu_book), label: "Home"),
         NavigationDestination(icon: Icon(Icons.search), label: "Search"),
       ];
 
