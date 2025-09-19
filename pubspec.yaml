@@ -20,6 +20,7 @@ dependencies:
   hive_ce_flutter: ^2.3.1
   flutter_expandable_fab: ^2.5.2
   path_provider: ^2.1.5
+  carousel_slider: ^5.1.1
 
 dev_dependencies:
   flutter_test:

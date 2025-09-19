@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:diary/providers/entry_provider.dart';
+import 'package:diary/screens/home_screen/widgets/carousel.dart';
 import 'package:diary/screens/home_screen/widgets/date_switcher.dart';
 import 'package:diary/screens/home_screen/widgets/home_container.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +27,7 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: image!.isNotEmpty
-              ? Image.file(
-                  File(image[0]),
-                  height: 200,
-                )
-              : const SizedBox.shrink(),
+          child: Carousel(imgList: image),
         ),
         SliverFillRemaining(
           hasScrollBody: false,

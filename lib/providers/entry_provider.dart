@@ -39,10 +39,13 @@ class CurrentEntry extends _$CurrentEntry {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image != null) {
       debugPrint("Image selected:- ${image.name}");
+      List<String> imgList = state.imgPaths ?? [];
+      imgList.add(image.path);
+      debugPrint(imgList.toString());
       state = Entry(
         date: state.date,
         body: state.body,
-        imgPaths: [image.path],
+        imgPaths: imgList,
       );
       EntryStore.update(daysSinceEpoch(state.date), state);
     } else {
