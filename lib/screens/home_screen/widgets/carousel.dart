@@ -14,6 +14,13 @@ class Carousel extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
+    if (imgList!.length == 1) {
+      return Image.file(
+        File(imgList![0]),
+        height: 300,
+      );
+    }
+
     return CarouselSlider(
       items: imgList!.map((imgPath) => Image.file(File(imgPath))).toList(),
       options: CarouselOptions(
