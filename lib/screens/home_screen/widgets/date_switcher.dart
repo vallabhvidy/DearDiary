@@ -60,7 +60,7 @@ class DatePill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 150),
+      constraints: BoxConstraints(maxWidth: 200),
       child: InkWell(
         onTap: () async {
           final newDate = await showDatePicker(
