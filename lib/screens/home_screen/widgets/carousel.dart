@@ -37,7 +37,12 @@ class _CarouselState extends ConsumerState<Carousel> {
         children: [
           CarouselSlider(
             carouselController: _controller,
-            items: imgList.map((imgPath) => Image.file(File(imgPath))).toList(),
+            items: imgList
+                .map((imgPath) => GestureDetector(
+                      onTap: () => debugPrint('Dudelo open big view'),
+                      child: Image.file(File(imgPath)),
+                    ))
+                .toList(),
             options: CarouselOptions(
               height: 300,
               enableInfiniteScroll: true,
@@ -74,7 +79,23 @@ class _CarouselState extends ConsumerState<Carousel> {
       );
     } else {
       return CarouselSlider(
-        items: imgList.map((imgPath) => Image.file(File(imgPath))).toList(),
+        carouselController: _controller,
+        items: imgList.map((imgPath) {
+          return GestureDetector(
+            onTap: () {
+              final idx = imgList.indexOf(imgPath);
+              debugPrint('$idx $_current');
+              if (idx == _current) {
+                debugPrint('open big view...');
+              } else {
+                setState(() {
+                  _controller.animateToPage(idx);
+                });
+              }
+            },
+            child: Image.file(File(imgPath)),
+          );
+        }).toList(),
         options: CarouselOptions(
           height: 300,
           enableInfiniteScroll: true,
