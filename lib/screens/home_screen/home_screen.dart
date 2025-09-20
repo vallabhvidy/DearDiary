@@ -11,8 +11,6 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final date = ref.watch(currentEntryProvider.select((entry) => entry.date));
-    final image =
-        ref.watch(currentEntryProvider.select((entry) => entry.imgPaths));
 
     debugPrint("Rebuilding home screen");
     debugPrint("Current entry date: $date");
@@ -27,7 +25,7 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: Carousel(imgList: image),
+          child: Carousel(),
         ),
         SliverFillRemaining(
           hasScrollBody: false,

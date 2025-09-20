@@ -1,30 +1,32 @@
 import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:diary/providers/entry_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Carousel extends StatefulWidget {
-  final List<String>? imgList;
-
-  const Carousel({super.key, required this.imgList});
+class Carousel extends ConsumerStatefulWidget {
+  const Carousel({super.key});
 
   @override
-  State<Carousel> createState() => _CarouselState();
+  ConsumerState<Carousel> createState() => _CarouselState();
 }
 
-class _CarouselState extends State<Carousel> {
+class _CarouselState extends ConsumerState<Carousel> {
   int _current = 0;
   final CarouselSliderController _controller = CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
-    if (widget.imgList == null || widget.imgList!.isEmpty) {
+    List<String>? imgList = ref.watch(currentEntryProvider).imgPaths;
+
+    if (imgList == null || imgList.isEmpty) {
       return const SizedBox.shrink();
     }
 
-    if (widget.imgList!.length == 1) {
+    if (imgList.length == 1) {
       return Image.file(
-        File(widget.imgList![0]),
+        File(imgList[0]),
         height: 300,
       );
     }
@@ -35,22 +37,21 @@ class _CarouselState extends State<Carousel> {
         children: [
           CarouselSlider(
             carouselController: _controller,
-            items: widget.imgList!
-                .map((imgPath) => Image.file(File(imgPath)))
-                .toList(),
+            items: imgList.map((imgPath) => Image.file(File(imgPath))).toList(),
             options: CarouselOptions(
-                height: 300,
-                enableInfiniteScroll: true,
-                enlargeCenterPage: true,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
-                }),
+              height: 300,
+              enableInfiniteScroll: true,
+              enlargeCenterPage: true,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _current = index;
+                });
+              },
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: widget.imgList!.asMap().entries.map((entry) {
+            children: imgList.asMap().entries.map((entry) {
               return GestureDetector(
                 onTap: () => _controller.animateToPage(entry.key),
                 child: Container(
@@ -73,9 +74,7 @@ class _CarouselState extends State<Carousel> {
       );
     } else {
       return CarouselSlider(
-        items: widget.imgList!
-            .map((imgPath) => Image.file(File(imgPath)))
-            .toList(),
+        items: imgList.map((imgPath) => Image.file(File(imgPath))).toList(),
         options: CarouselOptions(
           height: 300,
           enableInfiniteScroll: true,
