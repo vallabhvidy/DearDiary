@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:diary/providers/entry_provider.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,6 +17,22 @@ class _CarouselState extends ConsumerState<Carousel> {
   int _current = 0;
   final CarouselSliderController _controller = CarouselSliderController();
 
+  void openImageViewer(List<String> imgPaths) {
+    showImageViewerPager(
+      context,
+      MultiImageProvider(
+        imgPaths.map((e) => FileImage(File(e))).toList(),
+        initialIndex: _current,
+      ),
+      onPageChanged: (page) {
+        debugPrint("page changed to $page");
+      },
+      onViewerDismissed: (page) {
+        debugPrint("dismissed while on page $page");
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<String>? imgList = ref.watch(currentEntryProvider).imgPaths;
@@ -25,9 +42,12 @@ class _CarouselState extends ConsumerState<Carousel> {
     }
 
     if (imgList.length == 1) {
-      return Image.file(
-        File(imgList[0]),
-        height: 300,
+      return GestureDetector(
+        onTap: () => openImageViewer(imgList),
+        child: Image.file(
+          File(imgList[0]),
+          height: 300,
+        ),
       );
     }
     var screenWidth = MediaQuery.sizeOf(context).width;
@@ -39,7 +59,8 @@ class _CarouselState extends ConsumerState<Carousel> {
             carouselController: _controller,
             items: imgList
                 .map((imgPath) => GestureDetector(
-                      onTap: () => debugPrint('Dudelo open big view'),
+                      // https://pub.dev/packages/easy_image_viewer
+                      onTap: () => openImageViewer(imgList),
                       child: Image.file(File(imgPath)),
                     ))
                 .toList(),
@@ -86,9 +107,10 @@ class _CarouselState extends ConsumerState<Carousel> {
               final idx = imgList.indexOf(imgPath);
               debugPrint('$idx $_current');
               if (idx == _current) {
-                debugPrint('open big view...');
+                openImageViewer(imgList);
               } else {
                 setState(() {
+                  _current = idx;
                   _controller.animateToPage(idx);
                 });
               }
