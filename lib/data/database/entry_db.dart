@@ -11,10 +11,12 @@ class EntryStore {
 
   static Future<void> update(int key, Entry entry) async {
     String value = entry.body;
+    bool hasImage = entry.imgPath!.isNotEmpty || entry.imgPaths!.isNotEmpty;
 
-    if (value.replaceAll(RegExp(r'\s'), ' ').trim() == "" ||
-        value.replaceAll(RegExp(r'\s'), ' ').trim().trim() ==
-            defaultBody.replaceAll(RegExp(r'\s'), ' ').trim().trim()) {
+    if (!hasImage &&
+        (value.replaceAll(RegExp(r'\s'), ' ').trim() == "" ||
+            value.replaceAll(RegExp(r'\s'), ' ').trim().trim() ==
+                defaultBody.replaceAll(RegExp(r'\s'), ' ').trim().trim())) {
       debugPrint("Value is empty skipping update (and deleting entry).");
       await userBox.delete(key);
       return;
